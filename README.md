@@ -150,9 +150,9 @@ Double Number: 345 987,246
 ### Dealing with Compound Messages
 A  *compound message*  contains variable data. In the following list of compound messages, the variable data is underlined:
 
-- The disk named [<u>MyDisk</u>] contains [<u>300</u>] files.
-- The current balance of your account is [<u>$2,745.72</u>].
-- [<u>405,390</u>] people have visited your website since [<u>January 1, 2009</u>].
+- The disk named [*MyDisk*] contains [*300*] files.
+- The current balance of your account is [*$2,745.72*].
+- [*405,390*] people have visited your website since [*January 1, 2009*].
 
 Compound messages may contain different types of variables: dates, times, strings, numbers, currencies, etc. To format a compound message in a locale-independent manner, you construct a pattern that you apply to a `MessageFormat` object, and store this pattern in a `ResourceBundle`. A sample is given below,
 
