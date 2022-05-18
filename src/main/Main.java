@@ -14,17 +14,14 @@ import java.util.ResourceBundle;
 
 public class Main {
 
-	public static void localizedLanguageGreeting() {
+	public static void localizedLanguageGreeting(Locale locale) {
 		
-		Locale locale = new Locale("bn", "BD");
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("main.exampleResourceBundle", locale);
 		
 		System.out.println(resourceBundle.getString("greeting"));
 	}
 	
-	public static void localizedDateTimeFormattingUsingLocalDateTime() {
-		
-		Locale locale = new Locale("bn", "BD");
+	public static void localizedDateTimeFormattingUsingLocalDateTime(Locale locale) {
 		
 		LocalDateTime localDateTime = LocalDateTime.of(2018, 1, 1, 10, 15, 50);
 		String pattern = "dd-MMMM-yyyy HH:mm:ss.SSS";
@@ -37,10 +34,7 @@ public class Main {
 		System.out.println(date);
 	}
 	
-	public static void localizedDateTimeFormattingUsingDate() {
-
-		Locale locale = new Locale.Builder().setLanguage("bn").setRegion("BD")
-				.build();
+	public static void localizedDateTimeFormattingUsingDate(Locale locale) {
 		
 		GregorianCalendar gregorianCalendar = new GregorianCalendar(2018, 0, 1,
 				10, 15, 20);
@@ -52,10 +46,7 @@ public class Main {
 		System.out.println(dateString);
 	}
 	
-	public static void localizedNumberFormatting() {
-
-		Locale locale = new Locale.Builder().setLanguage("fr").setRegion("FR")
-				.build();
+	public static void localizedNumberFormatting(Locale locale) {
 
 		Integer integerNumber = 123456;
 		Double doubleNumber = 345987.246;
@@ -69,9 +60,7 @@ public class Main {
 				+ " \nDouble Number: " + localizedDoubleNumber);
 	}
 	
-	public static void localizedCurrencyFormatting() {
-		Locale locale = new Locale.Builder().setLanguage("bn").setRegion("BD")
-				.build();
+	public static void localizedCurrencyFormatting(Locale locale) {
 
 		Double currencyAmount = 9876543.21;
 		Currency currentCurrency = Currency.getInstance(locale);
@@ -103,32 +92,48 @@ public class Main {
 		System.out.println(messageToShow);
 	}
 	
-	public static void localizedCompoundMessageTestForBanglaAndEnglish() {
+	public static void  testLocalizationEnUS() {
 		
-		Locale locale;
-		
-		locale = new Locale.Builder().setLanguage("en").setRegion("US")
+		Locale locale = new Locale.Builder().setLanguage("bn").setRegion("BD")
 				.build();
-		showLocalizedCompoundMessage(locale);
 		
-		locale = new Locale.Builder().setLanguage("bn").setRegion("BD")
-				.build();
-		showLocalizedCompoundMessage(locale);
+		localizedLanguageGreeting(locale);
+		
+		localizedDateTimeFormattingUsingLocalDateTime(locale);
+		localizedDateTimeFormattingUsingDate(locale);
+		
+		localizedNumberFormatting(locale);
+		
+		localizedCurrencyFormatting(locale);
+		
+	}
+	
+	public static void  testLocalization(Locale locale) {
+
+		System.out.println("<---------------------START--------------------->\n");
+		System.out.println("Selected locale: " + locale.toString());
+		
+		localizedLanguageGreeting(locale);
+		
+		localizedDateTimeFormattingUsingLocalDateTime(locale);
+		localizedDateTimeFormattingUsingDate(locale);
+		
+		localizedNumberFormatting(locale);
+		
+		localizedCurrencyFormatting(locale);
+		
+		System.out.println("\n");
 	}
 	
 	
 	public static void main(String[] args) {
-		
-		localizedLanguageGreeting();
-		
-		localizedDateTimeFormattingUsingLocalDateTime();
-		localizedDateTimeFormattingUsingDate();
-		
-		localizedNumberFormatting();
-		
-		localizedCurrencyFormatting();
-		
-		localizedCompoundMessageTestForBanglaAndEnglish();
+
+		Locale locale;
+		locale = new Locale.Builder().setLanguage("en").setRegion("US").build();
+		testLocalization(locale);
+
+		locale = new Locale.Builder().setLanguage("bn").setRegion("BD").build();
+		testLocalization(locale);
 	}
 	
 }
