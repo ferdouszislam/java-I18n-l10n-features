@@ -14,14 +14,14 @@ import java.util.ResourceBundle;
 
 public class Main {
 
-	public static void localizedLanguageGreeting(Locale locale) {
+	public static void showLocalizedLanguageGreeting(Locale locale) {
 		
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("main.exampleResourceBundle", locale);
 		
 		System.out.println(resourceBundle.getString("greeting"));
 	}
 	
-	public static void localizedDateTimeFormattingUsingLocalDateTime(Locale locale) {
+	public static void showLocalizedDateTimeFormattingUsingLocalDateTime(Locale locale) {
 		
 		LocalDateTime localDateTime = LocalDateTime.of(2018, 1, 1, 10, 15, 50);
 		String pattern = "dd-MMMM-yyyy HH:mm:ss.SSS";
@@ -34,7 +34,7 @@ public class Main {
 		System.out.println(date);
 	}
 	
-	public static void localizedDateTimeFormattingUsingDate(Locale locale) {
+	public static void showLocalizedDateTimeFormattingUsingDate(Locale locale) {
 		
 		GregorianCalendar gregorianCalendar = new GregorianCalendar(2018, 0, 1,
 				10, 15, 20);
@@ -46,7 +46,7 @@ public class Main {
 		System.out.println(dateString);
 	}
 	
-	public static void localizedNumberFormatting(Locale locale) {
+	public static void showLocalizedNumberFormatting(Locale locale) {
 
 		Integer integerNumber = 123456;
 		Double doubleNumber = 345987.246;
@@ -56,11 +56,11 @@ public class Main {
 		String localizedIntegerNumber = numberFormatter.format(integerNumber);
 		String localizedDoubleNumber = numberFormatter.format(doubleNumber);
 
-		System.out.println("Integer Number: " + localizedIntegerNumber
-				+ " \nDouble Number: " + localizedDoubleNumber);
+		System.out.println(localizedIntegerNumber + " (integer)\n"
+				+ localizedDoubleNumber + " (double)");
 	}
 	
-	public static void localizedCurrencyFormatting(Locale locale) {
+	public static void showLocalizedCurrencyFormatting(Locale locale) {
 
 		Double currencyAmount = 9876543.21;
 		Currency currentCurrency = Currency.getInstance(locale);
@@ -92,35 +92,21 @@ public class Main {
 		System.out.println(messageToShow);
 	}
 	
-	public static void  testLocalizationEnUS() {
-		
-		Locale locale = new Locale.Builder().setLanguage("bn").setRegion("BD")
-				.build();
-		
-		localizedLanguageGreeting(locale);
-		
-		localizedDateTimeFormattingUsingLocalDateTime(locale);
-		localizedDateTimeFormattingUsingDate(locale);
-		
-		localizedNumberFormatting(locale);
-		
-		localizedCurrencyFormatting(locale);
-		
-	}
-	
 	public static void  testLocalization(Locale locale) {
 
 		System.out.println("<---------------------START--------------------->\n");
 		System.out.println("Selected locale: " + locale.toString());
 		
-		localizedLanguageGreeting(locale);
+		showLocalizedLanguageGreeting(locale);
 		
-		localizedDateTimeFormattingUsingLocalDateTime(locale);
-		localizedDateTimeFormattingUsingDate(locale);
+		showLocalizedDateTimeFormattingUsingLocalDateTime(locale);
+		showLocalizedDateTimeFormattingUsingDate(locale);
 		
-		localizedNumberFormatting(locale);
+		showLocalizedNumberFormatting(locale);
 		
-		localizedCurrencyFormatting(locale);
+		showLocalizedCurrencyFormatting(locale);
+		
+		showLocalizedCompoundMessage(locale);
 		
 		System.out.println("\n");
 	}
